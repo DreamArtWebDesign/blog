@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78b37017-7161-485c-9001-ffcc404de09d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/views/Speakings.html" afterPath="$PROJECT_DIR$/views/Speakings.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,7 +76,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="my.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/my.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
@@ -87,14 +88,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Speakings.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Speakings.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/Speakings.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="67" column="46" lean-forward="true" selection-start-line="67" selection-start-column="46" selection-end-line="91" selection-end-column="31" />
+            <state relative-caret-position="259">
+              <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
               <folding>
                 <element signature="n#ul#0;n#div#0;n#div#2;n#section#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.eventFlow.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/jquery.eventFlow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Speakings.html" pinned="false" current-in-tab="false">
+        <entry file="file://F:/lesson/un/Speakings.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -157,26 +178,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Speakings.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/Speakings.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tags.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/stylesheets/tags.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3552">
-              <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="timeline.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/timeline.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -211,8 +212,8 @@
         <option value="$PROJECT_DIR$/views/Category.html" />
         <option value="$PROJECT_DIR$/views/tags.html" />
         <option value="$PROJECT_DIR$/views/timeline.html" />
-        <option value="$PROJECT_DIR$/views/Speakings.html" />
         <option value="$PROJECT_DIR$/views/my.html" />
+        <option value="$PROJECT_DIR$/views/Speakings.html" />
       </list>
     </option>
   </component>
@@ -340,12 +341,12 @@
       <workItem from="1543759413389" duration="5401000" />
       <workItem from="1543831057244" duration="2985000" />
       <workItem from="1544101153210" duration="40000" />
-      <workItem from="1544101387229" duration="1062000" />
+      <workItem from="1544101387229" duration="1520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9488000" />
+    <option name="totallyTimeSpent" value="9946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1849" height="1102" extended-state="6" />
@@ -601,29 +602,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/Arctile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="139" column="65" lean-forward="false" selection-start-line="139" selection-start-column="65" selection-end-line="139" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/Category.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="155" column="85" lean-forward="false" selection-start-line="155" selection-start-column="85" selection-end-line="155" selection-end-column="85" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/tags.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="326" column="85" lean-forward="false" selection-start-line="326" selection-start-column="85" selection-end-line="326" selection-end-column="85" />
-          <folding>
-            <element signature="n#ul#0;n#div#0;n#div#2;n#section#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,20 +632,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/Speakings.html">
+    <entry file="file://$PROJECT_DIR$/views/my.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="67" column="46" lean-forward="true" selection-start-line="67" selection-start-column="46" selection-end-line="91" selection-end-column="31" />
+        <state relative-caret-position="36">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="n#ul#0;n#div#0;n#div#2;n#section#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/my.html">
+    <entry file="file://$PROJECT_DIR$/public/js/jquery.eventFlow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/lesson/un/Speakings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/tags.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="326" column="85" lean-forward="false" selection-start-line="326" selection-start-column="85" selection-end-line="326" selection-end-column="85" />
+          <folding>
+            <element signature="n#ul#0;n#div#0;n#div#2;n#section#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Arctile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="139" column="65" lean-forward="false" selection-start-line="139" selection-start-column="65" selection-end-line="139" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Speakings.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
           <folding>
             <element signature="n#ul#0;n#div#0;n#div#2;n#section#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
