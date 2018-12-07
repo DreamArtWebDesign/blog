@@ -83,95 +83,98 @@
 </div>
 
 <div class="container" style="margin-top: 50px">
-    <div class="col-md-8"  style="box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07) !important; border-radius: 10px;">
-    <div class="passage">
-        <div class="post-body" itemprop="articleBody">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-8 col-md-8"  style="box-shadow: 0 15px 35px rgba(50, 50, 93, .1), 0 5px 15px rgba(0, 0, 0, .07) !important; border-radius: 10px;">
+            <div class="passage col-xs-12 col-sm-12 " >
+                <div class="post-body" itemprop="articleBody">
 
-            <h1 >有时候基于 Vue 的单文件组件开发项目时, 不得不使用全局样式, 这时有一些需要注意的地方.</h1>
-            <a id="more"></a>
-            <p>当遇到需要使用全局样式时, 下列几种情况</p>
-            <ul>
-                <li>样式在项目各处均有使用;</li>
-                <li>样式只在当前组件内的 DOM 上使用;</li>
-                <li>样式需要应用到当前组件 DOM 的外部 DOM;</li>
-            </ul>
-            <p>下面详细记录一下需要注意的问题:</p>
-            <h3 id="样式在项目各处均有使用"><a href="#样式在项目各处均有使用" class="headerlink" title="样式在项目各处均有使用"></a>样式在项目各处均有使用</h3><p>如果样式需要在项目各处均有使用, 例如: <a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">reset.css</a>, <a href="https://github.com/BearD01001/tiny-trim.css" target="_blank" rel="noopener">tiny-trim.css</a> 等等.<br>这时推荐在项目入口文件中直接导入样式文件:</p>
-            <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/main.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'tiny-trim.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'asset/reset.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'asset/global.css'</span></span><br></pre></td></tr></tbody></table></figure>
-            <p>当然, 也可以在顶层组件中没有设置 <code>scoped</code> 属性的 <code>style</code> 标签中导入:</p>
-            <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> url(asset/reset.css);</span><br><span class="line">@<span class="keyword">import</span> url(asset/global.css);</span><br></pre></td></tr></tbody></table></figure>
-            <h3 id="样式只在当前组件内的-DOM-上使用"><a href="#样式只在当前组件内的-DOM-上使用" class="headerlink" title="样式只在当前组件内的 DOM 上使用"></a>样式只在当前组件内的 DOM 上使用</h3><p>当使用一些第三方 UI 库时, 有一些 UI 库生成的 DOM 在 <code>template</code> 中并不能直接添加 <code>class</code> 或 <code>style</code> 来修改第三方 UI 库的组件样式, 这时我们可以通过当前组件没有 <code>scoped</code> 属性的 <code>style</code> 标签来添加全局样式.</p>
-            <p>但此时需要考虑一些问题:</p>
-            <ul>
-                <li>这个样式应该只影响<strong>当前组件</strong>内第三方 UI 库渲染出来的 DOM</li>
-                <li>因为 DOM 不在 <code>template</code> 标签里 (DOM 由第三方 UI 库的 JS 在浏览器加载时构建或在编译打包过程中生成), 不能直接设置 <code>class</code> 或 <code>style</code> 来修改样式, 故只能使用没有 <code>scoped</code> 属性的 <code>style</code> 标签</li>
-            </ul>
-            <p>可以看出两点是有一定矛盾的. 不过可以采用如下方法解决或缓解:</p>
-            <ol>
-                <li><p>为当前组件根元素设置自定义 <code>data</code> 属性</p>
-                    <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src/components/MyComponent.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-component"</span> <span class="attr">data-custom-mycomponent</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tempalte</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-                </li>
-                <li><p>在没有 <code>scoped</code> 属性的 <code>style</code> 标签中使用自定义 <code>data</code> 属性限定样式作用域</p>
-                    <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.my-component</span><span class="selector-attr">[data-custom-mycomponent]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-                    <blockquote>
-                        <p>这里推荐使用 <code>Less</code> 或 <code>Sass</code>, 嵌套语法能减少许多代码冗余.</p>
-                    </blockquote>
-                </li>
-            </ol>
-            <h3 id="样式需要应用到当前组件-DOM-的外部-DOM"><a href="#样式需要应用到当前组件-DOM-的外部-DOM" class="headerlink" title="样式需要应用到当前组件 DOM 的外部 DOM"></a>样式需要应用到当前组件 DOM 的外部 DOM</h3><p>这种情况主要是针对上一种情况的补充, 有时候第三方 UI 库生成的 DOM 节点并不在当前组件的 DOM 内, 可能渲染到 <code>body</code> 中 (如 <code>dialog</code>, <code>tooltip</code>, <code>message</code> 等).</p>
-            <p>这些渲染到当前组件 <code>DOM</code> 之外的组件, 需要在上一种情况的处理基础上, 为它们的顶层元素再设置一个自定义的 <code>data</code> 属性:</p>
-            <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src/components/MyComponent.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-component"</span> <span class="attr">data-custom-mycomponent</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- message 组件的 DOM 将被渲染到 body 中, 而不是当前组件 .my-component 中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">message</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"my-component-message"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">msg</span>=<span class="string">"You got a message! "</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-custom-mycomponent-message</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tempalte</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
-            <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.my-component</span><span class="selector-attr">[data-custom-mycomponent]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br><span class="line"><span class="selector-class">.my-component-message</span><span class="selector-attr">[data-custom-mycomponent-message]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-            <p>-EOF</p>
+                    <h1 >有时候基于 Vue 的单文件组件开发项目时, 不得不使用全局样式, 这时有一些需要注意的地方.</h1>
+                    <a id="more"></a>
+                    <p>当遇到需要使用全局样式时, 下列几种情况</p>
+                    <ul>
+                        <li>样式在项目各处均有使用;</li>
+                        <li>样式只在当前组件内的 DOM 上使用;</li>
+                        <li>样式需要应用到当前组件 DOM 的外部 DOM;</li>
+                    </ul>
+                    <p>下面详细记录一下需要注意的问题:</p>
+                    <h3 id="样式在项目各处均有使用"><a href="#样式在项目各处均有使用" class="headerlink" title="样式在项目各处均有使用"></a>样式在项目各处均有使用</h3><p>如果样式需要在项目各处均有使用, 例如: <a href="http://meyerweb.com/eric/tools/css/reset/" target="_blank" rel="noopener">reset.css</a>, <a href="https://github.com/BearD01001/tiny-trim.css" target="_blank" rel="noopener">tiny-trim.css</a> 等等.<br>这时推荐在项目入口文件中直接导入样式文件:</p>
+                    <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/main.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'tiny-trim.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'asset/reset.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'asset/global.css'</span></span><br></pre></td></tr></tbody></table></figure>
+                    <p>当然, 也可以在顶层组件中没有设置 <code>scoped</code> 属性的 <code>style</code> 标签中导入:</p>
+                    <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> url(asset/reset.css);</span><br><span class="line">@<span class="keyword">import</span> url(asset/global.css);</span><br></pre></td></tr></tbody></table></figure>
+                    <h3 id="样式只在当前组件内的-DOM-上使用"><a href="#样式只在当前组件内的-DOM-上使用" class="headerlink" title="样式只在当前组件内的 DOM 上使用"></a>样式只在当前组件内的 DOM 上使用</h3><p>当使用一些第三方 UI 库时, 有一些 UI 库生成的 DOM 在 <code>template</code> 中并不能直接添加 <code>class</code> 或 <code>style</code> 来修改第三方 UI 库的组件样式, 这时我们可以通过当前组件没有 <code>scoped</code> 属性的 <code>style</code> 标签来添加全局样式.</p>
+                    <p>但此时需要考虑一些问题:</p>
+                    <ul>
+                        <li>这个样式应该只影响<strong>当前组件</strong>内第三方 UI 库渲染出来的 DOM</li>
+                        <li>因为 DOM 不在 <code>template</code> 标签里 (DOM 由第三方 UI 库的 JS 在浏览器加载时构建或在编译打包过程中生成), 不能直接设置 <code>class</code> 或 <code>style</code> 来修改样式, 故只能使用没有 <code>scoped</code> 属性的 <code>style</code> 标签</li>
+                    </ul>
+                    <p>可以看出两点是有一定矛盾的. 不过可以采用如下方法解决或缓解:</p>
+                    <ol>
+                        <li><p>为当前组件根元素设置自定义 <code>data</code> 属性</p>
+                            <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src/components/MyComponent.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-component"</span> <span class="attr">data-custom-mycomponent</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tempalte</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+                        </li>
+                        <li><p>在没有 <code>scoped</code> 属性的 <code>style</code> 标签中使用自定义 <code>data</code> 属性限定样式作用域</p>
+                            <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.my-component</span><span class="selector-attr">[data-custom-mycomponent]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+                            <blockquote>
+                                <p>这里推荐使用 <code>Less</code> 或 <code>Sass</code>, 嵌套语法能减少许多代码冗余.</p>
+                            </blockquote>
+                        </li>
+                    </ol>
+                    <h3 id="样式需要应用到当前组件-DOM-的外部-DOM"><a href="#样式需要应用到当前组件-DOM-的外部-DOM" class="headerlink" title="样式需要应用到当前组件 DOM 的外部 DOM"></a>样式需要应用到当前组件 DOM 的外部 DOM</h3><p>这种情况主要是针对上一种情况的补充, 有时候第三方 UI 库生成的 DOM 节点并不在当前组件的 DOM 内, 可能渲染到 <code>body</code> 中 (如 <code>dialog</code>, <code>tooltip</code>, <code>message</code> 等).</p>
+                    <p>这些渲染到当前组件 <code>DOM</code> 之外的组件, 需要在上一种情况的处理基础上, 为它们的顶层元素再设置一个自定义的 <code>data</code> 属性:</p>
+                    <figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- src/components/MyComponent.vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-component"</span> <span class="attr">data-custom-mycomponent</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- message 组件的 DOM 将被渲染到 body 中, 而不是当前组件 .my-component 中 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">message</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"my-component-message"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">msg</span>=<span class="string">"You got a message! "</span></span></span><br><span class="line"><span class="tag">      <span class="attr">data-custom-mycomponent-message</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tempalte</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+                    <figure class="highlight css"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.my-component</span><span class="selector-attr">[data-custom-mycomponent]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br><span class="line"><span class="selector-class">.my-component-message</span><span class="selector-attr">[data-custom-mycomponent-message]</span> {</span><br><span class="line">  // ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+                    <p>-EOF</p>
 
-            所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)
-        </div>
-    </div>
-    </div>
-
-
-
-
-
-    <div class="col-md-4 hidden-xs  " id="site-info" >
-
-        <section class="site-overview " style="opacity: 1; display: block; transform: translateY(0px);">
-            <div class="site-author">
-                <img class="site-author-image center-block" src="../public/imgs/b.jpg" style="height: 70px; width:70px; border: #0f0f0f 1px solid ">
-                <p class="site-author-name text-center">Cythnia</p>
-                <p class="site-description  text-center">Stay hungry! Stay foolish!</p>
+                    所有文章非特别说明皆为原创。技术更迭迅猛，部分内容可能会作修改，为保证信息与源同步，转载时请务必注明文章出处！谢谢合作 :-)
+                </div>
             </div>
-            <nav class="site-state ">
-                <div class="site-state-item site-state-posts">
+        </div>
+
+
+
+
+
+        <div class="col-md-4 hidden-xs hidden-sm col-lg-4 " id="site-info" >
+
+            <section class="site-overview " style="opacity: 1; display: block; transform: translateY(0px);">
+                <div class="site-author">
+                    <img class="site-author-image center-block" src="../public/imgs/b.jpg" style="height: 70px; width:70px; border: #0f0f0f 1px solid ">
+                    <p class="site-author-name text-center">Cythnia</p>
+                    <p class="site-description  text-center">Stay hungry! Stay foolish!</p>
+                </div>
+                <nav class="site-state ">
+                    <div class="site-state-item site-state-posts">
+                        <a href="#">
+                            <span class="site-state-item-count">15</span>
+                            <span class="site-state-item-name">articles</span>
+                        </a>
+                    </div>
+
+
+                    <div class="site-state-item site-state-categories">
+                        <a href="#">
+                            <span class="site-state-item-count">4</span>
+                            <span class="site-state-item-name">categories</span>
+                        </a>
+                    </div>                <div class="site-state-item site-state-categories">
                     <a href="#">
-                        <span class="site-state-item-count">15</span>
-                        <span class="site-state-item-name">articles</span>
+                        <span class="site-state-item-count">35</span>
+                        <span class="site-state-item-name">tags</span>
                     </a>
                 </div>
 
-
-                <div class="site-state-item site-state-categories">
-                    <a href="#">
-                        <span class="site-state-item-count">4</span>
-                        <span class="site-state-item-name">categories</span>
+                </nav>
+                <div class="feed-link motion-element">
+                    <a href="/rss2.xml" rel="alternate">
+                        <i class="fa fa-rss"></i>
+                        RSS
                     </a>
-                </div>                <div class="site-state-item site-state-categories">
-                <a href="#">
-                    <span class="site-state-item-count">35</span>
-                    <span class="site-state-item-name">tags</span>
-                </a>
-            </div>
+                </div>
+            </section>
 
-            </nav>
-            <div class="feed-link motion-element">
-                <a href="/rss2.xml" rel="alternate">
-                    <i class="fa fa-rss"></i>
-                    RSS
-                </a>
-            </div>
-        </section>
-
+        </div>
     </div>
+
 </div>
 
 <div class="autoMenu hidden-xs" id="autoMenu" data-autoMenu> </div>

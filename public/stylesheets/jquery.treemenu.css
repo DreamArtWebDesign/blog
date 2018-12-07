@@ -16,14 +16,14 @@ li.tree-empty > .toggler { color: #aaa; }
 li.tree-empty > .toggler:before { content: "\2212"; }
 li.tree-closed > .toggler:before { content: "+"; }
 li.tree-opened > .toggler:before { content: "\2212"; }
-.tree {  color:#46CFB0;width:800px;margin-top: 10px;margin-left: 15%;margin-right: 15%;}
+.tree {  color:#46CFB0;min-width:300px;margin-top: 10px;margin-left: 5%;margin-right: 5%;}
 .tree li,
 .tree li > a,
 .tree li > span {
     padding: 4pt;
     border-radius: 4px;
 }
-
+/*max-width:800px;*/
 .tree li a {
     color:#46CFB0;
     text-decoration: none;
